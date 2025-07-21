@@ -1,0 +1,42 @@
+---
+replicaCount: 2
+
+hostPodAntiAffinity:
+  enabled: true
+
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    cert-manager.io/cluster-issuer: "dns01-cloudflare-cluster-issuer-prod"
+  className: "nginx"
+  hosts:
+    - host: "yopass.nailforge.dev"
+      paths:
+        - path: "/"
+          pathType: "Prefix"
+          servicePortName: "http"
+  tls:
+    - hosts:
+        - "yopass.nailforge.dev"
+      secretName: "yopass-tls"
+
+metrics:
+  enabled: true
+  serviceMonitor:
+    enabled: true
+
+app:
+  env:
+    - name: "PORT"
+      value: "8080"
+    - name: "METRICS_PORT"
+      value: "3000"
+    - name: "DATABASE"
+      value: "redis"
+    - name: "REDIS"
+      valueFrom:
+        secretKeyRef:
+          name: "yopass-valkey-credentials"
+          key: "url"
+...
