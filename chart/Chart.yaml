@@ -1,0 +1,23 @@
+---
+apiVersion: "v2"
+name: "yopass"
+description: "A lightweight Helm chart for Yopass that prioritizes transparency and flexibility"
+type: "application"
+icon: "https://avatars.githubusercontent.com/u/67865462"
+keywords:
+  - "yopass"
+  - "secrets"
+  - "security"
+maintainers:
+  - name: "ernail"
+    email: "nagel.eric.95@googlemail.com"
+annotations:
+  artifacthub.io/license: "MIT"
+  artifacthub.io/links: |
+    - name: source
+      url: https://github.com/erNail/yopass-chart
+    - name: support
+      url: https://github.com/erNail/yopass-chart/issues
+version: "0.0.0"
+appVersion: "11.20.0"
+...
