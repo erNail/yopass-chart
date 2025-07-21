@@ -3,7 +3,7 @@ apiVersion: "v2"
 name: "yopass"
 description: "A lightweight Helm chart for Yopass that prioritizes transparency and flexibility"
 type: "application"
-icon: "https://avatars.githubusercontent.com/u/67865462"
+icon: "https://repository-images.githubusercontent.com/16027367/5e148d00-d9f9-11e9-8fa7-04b02283d9af"
 keywords:
   - "yopass"
   - "secrets"
