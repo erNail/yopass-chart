@@ -1,0 +1,37 @@
+---
+apiVersion: "argoproj.io/v1alpha1"
+kind: "Application"
+metadata:
+  name: "yopass"
+  namespace: "argocd"
+spec:
+  project: "default"
+  sources:
+    - repoURL: "https://github.com/erNail/yopass-chart"
+      targetRevision: "main"
+      path: "examples/argocd-valkey"
+      ref: "values"
+    - repoURL: "https://github.com/erNail/yopass-chart"
+      targetRevision: "main"
+      path: "chart"
+      helm:
+        releaseName: "yopass"
+        valueFiles:
+          - "$values/examples/argocd-valkey/values-yopass.yaml"
+    - repoURL: "registry-1.docker.io/bitnamicharts"
+      chart: "valkey"
+      targetRevision: "3.0.22"
+      helm:
+        releaseName: "yopass-valkey"
+        valueFiles:
+          - "$values/examples/argocd-valkey/values-yopass-valkey.yaml"
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: "yopass"
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - "CreateNamespace=true"
+...
