@@ -19,5 +19,7 @@ annotations:
     - name: support
       url: https://github.com/erNail/yopass-chart/issues
 version: "0.0.0"
+
+# renovate: image=jhaals/yopass
 appVersion: "11.20.0"
 ...
