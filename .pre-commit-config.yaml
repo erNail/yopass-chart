@@ -1,9 +1,17 @@
 ---
 repos:
+  - repo: "https://github.com/gitleaks/gitleaks"
+    rev: "v8.28.0"
+    hooks:
+      - id: "gitleaks"
+
   - repo: "https://github.com/norwoodj/helm-docs"
     rev: "v1.14.2"
     hooks:
       - id: "helm-docs-built"
+        args:
+          - "--chart-search-root=chart"
+          - "--template-files=README.md.gotmpl"
 
   - repo: "https://github.com/pre-commit/pre-commit-hooks"
     rev: "v5.0.0"
