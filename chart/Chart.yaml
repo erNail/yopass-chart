@@ -20,4 +20,4 @@ annotations:
       url: https://github.com/erNail/yopass-chart/issues
 version: "0.0.0"
 # renovate: image=jhaals/yopass
-appVersion: "11.20.0"
+appVersion: "12.4.0"
