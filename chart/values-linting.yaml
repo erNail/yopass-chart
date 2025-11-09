@@ -26,4 +26,3 @@ serviceAccount:
 
 service:
   enableAdditionalHeadlessService: true
-...

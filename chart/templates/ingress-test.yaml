@@ -162,4 +162,3 @@ tests:
                         name: "yopass"
                         port:
                           name: "custom-service-port"
-...

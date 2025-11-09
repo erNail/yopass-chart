@@ -365,7 +365,7 @@ tests:
       - equal:
           path: "spec.template.spec.nodeSelector"
           value:
-              disktype: "ssd"
+            disktype: "ssd"
 
   - it: "should not render affinity with default value"
     asserts:
@@ -401,11 +401,11 @@ tests:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
-            - matchExpressions:
-              - key: kubernetes.io/os
-                operator: In
-                values:
-                - linux
+              - matchExpressions:
+                  - key: kubernetes.io/os
+                    operator: In
+                    values:
+                      - linux
     asserts:
       - equal:
           path: "spec.template.spec.affinity"
@@ -413,11 +413,11 @@ tests:
             nodeAffinity:
               requiredDuringSchedulingIgnoredDuringExecution:
                 nodeSelectorTerms:
-                - matchExpressions:
-                  - key: kubernetes.io/os
-                    operator: In
-                    values:
-                    - linux
+                  - matchExpressions:
+                      - key: kubernetes.io/os
+                        operator: In
+                        values:
+                          - linux
 
   - it: "should not render tolerations with default value"
     asserts:
@@ -439,4 +439,3 @@ tests:
               operator: "Equal"
               value: "value"
               effect: "NoSchedule"
-...
