@@ -34,7 +34,60 @@ These are all questions that should be answered by the user, not the chart.
 
 ## Getting Started
 
-Please read the charts [`README.md`](./chart/README.md) to get started.
+### Deploy the Helm Chart
+
+If the default values in the [`values.yaml`](./values.yaml) fit your needs,
+you can deploy the helm chart using this command:
+
+```shell
+helm install yopass oci://ghcr.io/ernail/charts/yopass \
+--namespace yopass \
+--create-namespace
+```
+
+### Configure the Helm Chart
+
+Helm provides different ways to [configure helm charts via values](https://helm.sh/docs/helm/helm_install/#synopsis).
+A common way is to create your own values file,
+which overrides values of the charts default [`values.yaml`](./values.yaml):
+
+```shell
+helm install yopass oci://ghcr.io/ernail/charts/yopass \
+--namespace yopass \
+--create-namespace \
+--values values-base.yaml
+```
+
+You can also pass in multiple values files. For example if you need seperate configuration for your `dev` environment:
+
+```shell
+helm install yopass oci://ghcr.io/ernail/charts/yopass \
+--namespace yopass \
+--create-namespace \
+--values values-base.yaml \
+--values values-dev.yaml
+```
+
+All configuration options are documented in the [`values.yaml`](./chart/values.yaml).
+
+### Key Configuration Options
+
+An example config is available in the [`values.yaml`](./chart/values.yaml).
+Example deployments are available in the [`examples`](./examples) directory.
+
+#### Database
+
+The chart does not bundle any database, so you need to provide your own.
+Check the Yopass documentation for the supported databases.
+You can configure the database connection via the `app.env` values.
+
+#### Miscellaneous
+
+Other important configuration options that should be reviewed are:
+
+- `ingress` - The ingress configuration
+- `metrics` - The metrics configuration
+- `resources` - The resource requests and limits
 
 ## Contributing
 
@@ -44,7 +97,7 @@ Please check the [`CONTRIBUTING.md`](./CONTRIBUTING.md) to learn how to contribu
 
 ### Installing dependencies
 
-You can install all required dependencies via `Task` and `Homebrew`
+You can install all required dependencies via `Task` and `Homebrew`.
 
 ```shell
 brew install go-task
@@ -54,26 +107,6 @@ task install
 If you'd like to use other tools,
 you can find all dependencies and relevant commands in the [`taskfile.yaml`](./taskfile.yaml)
 
-### Rendering the Helm Chart
+### Running Tasks
 
-```shell
-task render
-```
-
-### Testing the Helm Chart
-
-```shell
-task test
-```
-
-### Running linters
-
-```shell
-task lint
-```
-
-### Generating documentation
-
-```shell
-task docs
-```
+You can find all available tasks in the [`taskfile.yaml`](./taskfile.yaml).
