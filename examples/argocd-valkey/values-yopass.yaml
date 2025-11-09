@@ -39,4 +39,3 @@ app:
         secretKeyRef:
           name: "yopass-valkey-credentials"
           key: "url"
-...
