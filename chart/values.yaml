@@ -10,7 +10,6 @@ apiVersions:
   service: "v1"
   serviceAccount: "v1"
   serviceMonitor: "monitoring.coreos.com/v1"
-  configMap: "v1"
 
 # -- Use this to override the name of the chart.
 nameOverride: ""
