@@ -54,6 +54,7 @@ podAnnotations: {}
 extraPodLabels: {}
 
 # -- Resource limits and requests.
+# You might want to set `limits.cpu` to `null`: https://home.robusta.dev/blog/stop-using-cpu-limits
 #
 # Ref: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 resources:
