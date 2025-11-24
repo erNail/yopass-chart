@@ -98,11 +98,11 @@ tests:
       - equal:
           path: "spec.template.metadata.labels"
           value:
-            app.kubernetes.io/instance: yopass
-            app.kubernetes.io/managed-by: Helm
-            app.kubernetes.io/name: yopass
-            app.kubernetes.io/version: 0.0.0
-            helm.sh/chart: yopass-0.0.0
+            app.kubernetes.io/instance: "yopass"
+            app.kubernetes.io/managed-by: "Helm"
+            app.kubernetes.io/name: "yopass"
+            app.kubernetes.io/version: "0.0.0"
+            helm.sh/chart: "yopass-0.0.0"
 
   - it: "should render extraPodLabels as set"
     chart:
@@ -116,12 +116,12 @@ tests:
       - equal:
           path: "spec.template.metadata.labels"
           value:
-            app.kubernetes.io/instance: yopass
-            app.kubernetes.io/managed-by: Helm
-            app.kubernetes.io/name: yopass
-            app.kubernetes.io/version: 0.0.0
-            helm.sh/chart: yopass-0.0.0
-            test: test
+            app.kubernetes.io/instance: "yopass"
+            app.kubernetes.io/managed-by: "Helm"
+            app.kubernetes.io/name: "yopass"
+            app.kubernetes.io/version: "0.0.0"
+            helm.sh/chart: "yopass-0.0.0"
+            test: "test"
 
   - it: "should not render imagePullSecrets with default value"
     asserts:
@@ -389,8 +389,8 @@ tests:
                   podAffinityTerm:
                     labelSelector:
                       matchLabels:
-                        app.kubernetes.io/instance: yopass
-                        app.kubernetes.io/name: yopass
+                        app.kubernetes.io/instance: "yopass"
+                        app.kubernetes.io/name: "yopass"
                     topologyKey: "kubernetes.io/hostname"
 
   - it: "should render affinity as set"
@@ -402,10 +402,10 @@ tests:
           requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
               - matchExpressions:
-                  - key: kubernetes.io/os
-                    operator: In
+                  - key: "kubernetes.io/os"
+                    operator: "In"
                     values:
-                      - linux
+                      - "linux"
     asserts:
       - equal:
           path: "spec.template.spec.affinity"
@@ -414,10 +414,10 @@ tests:
               requiredDuringSchedulingIgnoredDuringExecution:
                 nodeSelectorTerms:
                   - matchExpressions:
-                      - key: kubernetes.io/os
-                        operator: In
+                      - key: "kubernetes.io/os"
+                        operator: "In"
                         values:
-                          - linux
+                          - "linux"
 
   - it: "should not render tolerations with default value"
     asserts:

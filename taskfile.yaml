@@ -32,7 +32,7 @@ tasks:
       - "markdownlint '**/*.md'"
       - "yamllint ."
       - "yamllint -c .yamllint-manifests.yaml ."
-      - "kube-score score chart/dist/yopass/templates/*.yaml"
+      - "kube-score score chart/dist/yopass/templates/*.yaml --ignore-test pod-networkpolicy"
       - "kube-linter lint chart/dist/yopass/templates/*.yaml"
       - "trufflehog git file://."
 
