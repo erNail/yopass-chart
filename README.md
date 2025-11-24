@@ -10,19 +10,16 @@ Tested with [`helm-unittest`](https://github.com/helm-unittest/helm-unittest).
 
 ## Design Philosophy
 
-### Transparency and Flexibility over Abstraction and Convenience
+### No Magic
 
 This chart may diverge from some common chart conventions.
-It favors transparency and flexibility over abstraction and convenience:
-
-- **Values-Driven:** The goal is to provide a chart that can be understood just by looking at the values file.
-  There should be no need to look into the templates to understand what the chart does and how it works.
-- **Minimal Abstraction:** The chart avoids hidden logic and magic behavior as much as possible.
-  A lot of what you see in the values file is what gets rendered in the templates.
-- **Flexibility over Convenience:** The chart is designed to be flexible and understandable.
-  But this comes at the cost of convenience. Often you'll have to change multiple values to achieve the desired outcome.
-  For example, if you want to change the ports of the application,
-  you'd have to adapt the environment at `.Values.app.env`, as well as `.Values.containerPorts`.
+The goal is to provide a chart that is configurable and understandable.
+To achieve this, hidden logic and magic behavior is avoided as much as possible.
+But this comes at the cost of convenience:
+For example, if you want to change the ports the application is using, you'd have to adapt both
+`.Values.containerPorts` and whatever fields are configuring the application
+(environment variables at `.Values.app.env` or arguments at `.Values.app.args`,
+or config files at `.Values.configMap.data`).
 
 ### No Dependencies
 
@@ -31,6 +28,13 @@ While this may seem inconvenient, it keeps the chart lightweight, and ensures us
 Which database should be used? Is one already deployed? Should a new one be deployed? Is it deployed via helm chart or
 operator? Which helm chart should be used? Is a managed database service used?
 These are all questions that should be answered by the user, not the chart.
+
+### No Network Policies
+
+This chart does not contain templates for K8s objects like `NetworkPolicy`.
+While network policies are important for securing workloads,
+they are highly dependent on the specific cluster setup and requirements.
+It's the users responsibility to define and manage network policies that fit their needs.
 
 ## Getting Started
 
@@ -69,11 +73,10 @@ helm install yopass oci://ghcr.io/ernail/charts/yopass \
 ```
 
 All configuration options are documented in the [`values.yaml`](./chart/values.yaml).
-
-### Key Configuration Options
-
 An example config is available in the [`values.yaml`](./chart/values.yaml).
 Example deployments are available in the [`examples`](./examples) directory.
+
+### Key Configuration Options
 
 #### Database
 
@@ -88,6 +91,7 @@ Other important configuration options that should be reviewed are:
 - `ingress` - The ingress configuration
 - `metrics` - The metrics configuration
 - `resources` - The resource requests and limits
+- `volumeConfigs` - The volume and persistence settings
 
 ## Contributing
 
